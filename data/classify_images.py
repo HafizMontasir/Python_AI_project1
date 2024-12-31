@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/classify_images.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:                                 
-# REVISED DATE: 
+# PROGRAMMER: MD HAFIZ MONTASIR MISHAN
+# DATE CREATED: 2024-12-27
+# REVISED DATE: 2024-12-30 
 # PURPOSE: Create a function classify_images that uses the classifier function 
 #          to create the classifier labels and then compares the classifier 
 #          labels to the pet image labels. This function inputs:
@@ -65,4 +65,33 @@ def classify_images(images_dir, results_dic, model):
      Returns:
            None - results_dic is mutable data type so no return needed.         
     """
-    None 
+    for key in results_dic:
+        # Uses classifier function to classify the images
+        # classifier returns model_label as string
+        model_label = classifier(images_dir + key, model)
+        
+        # Process the model_label to create a list of matching labels
+        model_label = model_label.lower().strip()
+        
+        # Defines truth as pet image label and trims whitespace
+        truth = results_dic[key][0]
+        
+        # If the pet image label is found within the classifier label list 
+        # then there is a match
+        found = model_label.find(truth)
+        
+        # Extend the results_dic dictionary
+        if found >= 0:
+            if ( (found == 0 and len(truth) == len(model_label)) or
+                 (((found == 0) or (model_label[found - 1] == " ")) and
+                  ((found + len(truth) == len(model_label)) or 
+                   (model_label[found + len(truth): found + len(truth) + 1] in 
+                    (" ", ",") )))):
+                # They are the same, add 1 to results_dic
+                results_dic[key].extend([model_label, 1])
+            else:
+                # They are different, add 0 to results_dic
+                results_dic[key].extend([model_label, 0])
+        else:
+            # They are different, add 0 to results_dic
+            results_dic[key].extend([model_label, 0])

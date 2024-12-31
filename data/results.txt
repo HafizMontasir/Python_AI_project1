@@ -1,0 +1,36 @@
+Results Summary:
+
+# Total Images: 40
+# Dog Images: 30
+# Not-a-Dog Images: 10
+
+CNN Model Architecture Results:
+
+ResNet:
+% Not-a-Dog Correct: 90.0%
+% Dogs Correct: 100.0%
+% Breeds Correct: 90.0%
+% Match Labels: 82.5%
+
+AlexNet:
+% Not-a-Dog Correct: 100.0%
+% Dogs Correct: 100.0%
+% Breeds Correct: 80.0%
+% Match Labels: 75.0%
+
+VGG:
+% Not-a-Dog Correct: 100.0%
+% Dogs Correct: 100.0%
+% Breeds Correct: 93.3%
+% Match Labels: 87.5%
+
+Given our results, the "best" model architecture is VGG. It outperformed both of the other architectures when considering both objectives 1 and 2. You will notice that ResNet did classify dog breeds better than AlexNet, but only VGG and AlexNet were able to classify "dogs" and "not-a-dog" at 100% accuracy. The model VGG was the one that was able to classify "dogs" and "not-a-dog" with 100% accuracy and had the best performance regarding breed classification with 93.3% accuracy.
+
+Project Objectives Met:
+1. Identifying Dogs vs Non-Dogs: VGG and AlexNet achieved 100% accuracy, while ResNet achieved 90% for non-dogs and 100% for dogs
+2. Classifying Dog Breeds: VGG performed best with 93.3% accuracy, followed by ResNet (90.0%) and AlexNet (80.0%)
+
+Model Run Times:
+ResNet: 12 seconds
+AlexNet: 7 seconds
+VGG: 44 seconds
